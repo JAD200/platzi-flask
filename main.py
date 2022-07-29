@@ -2,7 +2,7 @@ from flask import Flask, make_response, redirect, render_template, request
 
 app = Flask(__name__)
 
-todos = ['TODO 1', 'TODO 2', 'TODO 3']
+todos = ['Comprar cafe', 'Comprar guantes', 'Hacer el pull request']
 
 
 #   Main route for the app

@@ -2,9 +2,17 @@ from flask import Flask, make_response, redirect, render_template, request
 
 app = Flask(__name__)
 
+todos = ['TODO 1', 'TODO 2', 'TODO 3']
 
+
+#   Main route for the app
 @app.route('/')
 def index():
+    """index Shows a redirection link if there is no user's IP cookie
+
+    Returns:
+        cookie: cookie with the user's IP
+    """
     user_ip = request.remote_addr
 
     response = make_response(redirect('/hello'))
@@ -13,8 +21,18 @@ def index():
     return response
 
 
+#   Route shown if there is a cookie with the user's IP available
 @app.route('/hello')
 def hello():
-    user_ip = request.cookies.get('user_ip')
+    """hello Defines the data for this path
 
-    return render_template('hello.html', user_ip=user_ip)
+    Returns:
+        html: Template on Jira 2 with the route information
+    """
+    user_ip = request.cookies.get('user_ip')
+    context = {
+        'user_ip': user_ip,
+        'todos': todos,
+    }
+
+    return render_template('hello.html', **context)

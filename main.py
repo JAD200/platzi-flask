@@ -1,8 +1,20 @@
+from distutils.log import error
+from errno import EROFS
 from flask import Flask, make_response, redirect, render_template, request
 
 app = Flask(__name__, template_folder='./templates', static_folder='./static')
 
 todos = ['Comprar cafe', 'Comprar guantes', 'Hacer el pull request']
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html', error=error)
+
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('500.html', error=error)
 
 
 #   Main route for the app

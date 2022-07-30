@@ -1,6 +1,6 @@
 from flask import Flask, make_response, redirect, render_template, request
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='./templates', static_folder='./static')
 
 todos = ['Comprar cafe', 'Comprar guantes', 'Hacer el pull request']
 

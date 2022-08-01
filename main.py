@@ -1,6 +1,13 @@
-from flask import Flask, make_response, redirect, render_template, request
+#   Bootstrap
+from flask_bootstrap import Bootstrap
+
+#   Flask
+from flask import Flask, make_response, redirect, render_template, request, session
 
 app = Flask(__name__, template_folder='./templates', static_folder='./static')
+bootstrap = Bootstrap(app)
+
+app.config['SECRET_KEY'] = '69E9FBBE-27B3-4E68-8BC3-2D9EE573FFEF'
 
 todos = ['Comprar cafe', 'Comprar guantes', 'Hacer el pull request']
 
@@ -26,7 +33,7 @@ def index():
     user_ip = request.remote_addr
 
     response = make_response(redirect('/hello'))
-    response.set_cookie('user_ip', user_ip)
+    session['user_ip'] = user_ip
 
     return response
 
@@ -39,7 +46,7 @@ def hello():
     Returns:
         html: Template on Jira 2 with the route information
     """
-    user_ip = request.cookies.get('user_ip')
+    user_ip = session.get('user_ip')
     context = {
         'user_ip': user_ip,
         'todos': todos,

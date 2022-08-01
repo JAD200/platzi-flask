@@ -1,5 +1,3 @@
-from distutils.log import error
-from errno import EROFS
 from flask import Flask, make_response, redirect, render_template, request
 
 app = Flask(__name__, template_folder='./templates', static_folder='./static')

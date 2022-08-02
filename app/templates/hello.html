@@ -13,7 +13,7 @@
     {% endif %}
 
     {% if user_ip %}
-    <h2>Hello world Platzi, tu IP es {{user_ip}}</h2>
+    <h2>Tu IP es {{user_ip}}</h2>
     {% else %}
     <a href="{{ url_for('index') }}">Ir a inicio</a>
     {% endif %}

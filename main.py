@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
 
-from flask import Flask, make_response, redirect, render_template, request, session, url_for
+from flask import Flask, flash,make_response, redirect, render_template, request, session, url_for
 
 app = Flask(__name__, template_folder='./templates', static_folder='./static')
 bootstrap = Bootstrap(app)
@@ -66,6 +66,8 @@ def hello():
     if login_form.validate_on_submit():
         username = login_form.username.data
         session['username'] = username
+        
+        flash('Nombre de usuario registrado con éxito!')
         
         return redirect(url_for('index'))
 

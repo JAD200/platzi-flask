@@ -1,8 +1,10 @@
-flask==1.0.2
-click==7.0
-jinja2==2.10
+autopep8==1.6.0
+Flask==1.0.2
+Flask-Bootstrap==3.3.7.1
+Flask-Testing==0.8.1
+Flask-WTF==0.14.2
 itsdangerous==1.1.0
-markupsafe==1.1.1
-werkzeug==0.14.1
-flask-bootstrap==3.3.7.1
-flask-wtf==0.14.2
+Jinja2==2.10
+MarkupSafe==1.1.1
+pycodestyle==2.9.0
+WTForms==3.0.1

@@ -1,4 +1,3 @@
-from urllib import response
 from flask_testing import TestCase
 from flask import current_app, url_for
 

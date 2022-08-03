@@ -43,7 +43,7 @@ def index():
 
 
 #   Route shown if there is a cookie with the user's IP available
-@app.route('/hello', methods=['GET', 'POST'])
+@app.route('/hello', methods=['GET'])
 def hello():
     """hello Defines the data for this path
 
@@ -51,21 +51,13 @@ def hello():
         html: Template on Jira 2 with the route information
     """
     user_ip = session.get('user_ip')
-    login_form = LoginForm()
     username = session.get('username')
 
     context = {
         'user_ip': user_ip,
         'todos': todos,
-        'login_form': login_form,
+        # 'login_form': login_form,
         'username': username,
     }
-    if login_form.validate_on_submit():
-        username = login_form.username.data
-        session['username'] = username
-
-        flash('Nombre de usuario registrado con éxito!')
-
-        return redirect(url_for('index'))
 
     return render_template('hello.html', **context)

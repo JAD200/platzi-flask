@@ -1,9 +1,8 @@
 import unittest
 
-from flask import flash, make_response, redirect, render_template, request, session, url_for
+from flask import make_response, redirect, render_template, request, session
 
 from app import create_app
-from app.forms import LoginForm
 
 app = create_app()
 

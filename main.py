@@ -3,10 +3,11 @@ import unittest
 from flask import make_response, redirect, render_template, request, session
 
 from app import create_app
+from app.firestore_service import get_users, get_todos
 
 app = create_app()
 
-todos = ['Comprar cafe', 'Comprar guantes', 'Hacer el pull request']
+# todos = ['Comprar cafe', 'Comprar guantes', 'Hacer el pull request']
 
 
 @app.cli.command()
@@ -54,9 +55,14 @@ def hello():
 
     context = {
         'user_ip': user_ip,
-        'todos': todos,
-        # 'login_form': login_form,
+        'todos': get_todos(user_id=username),
         'username': username,
     }
+    
+    users = get_users()
+    
+    for user in users:
+        print(user.id)
+        print(user.to_dict()['password'])
 
     return render_template('hello.html', **context)

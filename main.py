@@ -1,13 +1,14 @@
 import unittest
 
 from flask import make_response, redirect, render_template, request, session
+from flask_login import login_required
 
+from app import login_manager
 from app import create_app
-from app.firestore_service import get_users, get_todos
+from app.firestore_service import get_todos
 
 app = create_app()
-
-# todos = ['Comprar cafe', 'Comprar guantes', 'Hacer el pull request']
+login_manager.init_app(app)
 
 
 @app.cli.command()
@@ -44,6 +45,7 @@ def index():
 
 #   Route shown if there is a cookie with the user's IP available
 @app.route('/hello', methods=['GET'])
+@login_required
 def hello():
     """hello Defines the data for this path
 
@@ -58,11 +60,5 @@ def hello():
         'todos': get_todos(user_id=username),
         'username': username,
     }
-    
-    users = get_users()
-    
-    for user in users:
-        print(user.id)
-        print(user.to_dict()['password'])
 
     return render_template('hello.html', **context)

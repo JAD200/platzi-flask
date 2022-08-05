@@ -25,7 +25,7 @@ class MainTest(TestCase):
         self.assertRedirects(response, url_for('hello'))
 
     def test_hello_get(self):
-        response = self.client.get(url_for('hello'))
+        response = self.client.get('/auth/login?next=%2Fhello')
 
         self.assert200(response)
 
@@ -52,6 +52,6 @@ class MainTest(TestCase):
             'username': 'fake-user',
             'password': 'fake-password'
         }
-        
+
         response = self.client.post(url_for('auth.login'), data=fake_form)
         self.assertRedirects(response, url_for('index'))

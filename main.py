@@ -1,11 +1,11 @@
 import unittest
 
-from flask import make_response, redirect, render_template, request, session
-from flask_login import login_required, current_user
+from flask import flash, make_response, redirect, render_template, request, session, url_for
+from flask_login import current_user, login_required
 
-from app import login_manager
-from app import create_app
-from app.firestore_service import get_todos
+from app import create_app, login_manager
+from app.firestore_service import get_todos, put_todo
+from app.forms import TodoForm
 
 app = create_app()
 login_manager.init_app(app)
@@ -44,7 +44,7 @@ def index():
 
 
 #   Route shown if there is a cookie with the user's IP available
-@app.route('/hello', methods=['GET'])
+@app.route('/hello', methods=['GET', 'POST'])
 @login_required
 def hello():
     """hello Defines the data for this path
@@ -54,11 +54,20 @@ def hello():
     """
     user_ip = session.get('user_ip')
     username = current_user.id
+    todo_form = TodoForm()
 
     context = {
         'user_ip': user_ip,
         'todos': get_todos(user_id=username),
         'username': username,
+        'todo_form': todo_form
     }
+
+    if todo_form.validate_on_submit():
+        put_todo(user_id=username, description=todo_form.description.data)
+
+        flash('Tarea creada con éxito!')
+
+        return redirect(url_for('hello'))
 
     return render_template('hello.html', **context)

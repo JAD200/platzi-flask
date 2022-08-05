@@ -32,7 +32,7 @@ class MainTest(TestCase):
     def test_hello_post(self):
         response = self.client.post(url_for('hello'))
 
-        self.assertTrue(response.status_code, 405)
+        self.assertTrue(response.status_code, 302)
 
     def test_auth_blueprint_exists(self):
         self.assertIn('auth', self.app.blueprints)

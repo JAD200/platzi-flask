@@ -10,4 +10,10 @@ export FLASK_ENV=development
 echo $FLASK_ENV
 
 printf "%$width.${width}s\n\n" "$divider"
-printf "%s\n" "Flask's sets are ready" "use   flask run --reload  to run the server"
+printf "%s\n" "Flask's sets are ready" "(1)To run the server" "(2)To run tests" "Pres any key to DO NOTHING"
+read -n1 -s number
+case $number in 
+    1) flask run --reload ;;
+    2) flask test ;;
+    *) echo DOING NOTHING ;;
+esac

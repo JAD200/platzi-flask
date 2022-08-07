@@ -22,11 +22,13 @@
         <h2>Crea una nueva tarea</h2>
 
         {{ wtf.quick_form(todo_form) }}
-    </div>
+    
 
-    <ul>
-        {% for todo in todos %}
-            {{ macros.render_todo(todo) }}
-        {% endfor %}
-    </ul>
+        <ul class="list-group" title="Todo list">
+            <h3 class='text-center title'>Lista de tareas</h3>
+            {% for todo in todos %}
+                {{ macros.render_todo(todo) }}
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

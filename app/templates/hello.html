@@ -24,8 +24,12 @@
         {{ wtf.quick_form(todo_form) }}
     
 
-        <ul class="list-group" title="Todo list">
-            <h3 class='text-center title'>Lista de tareas</h3>
+        <ul class="list-group list-group-flush" title="Todo list">
+            <h3 class='text-muted text-center title'>--- Lista de tareas ---</h3>
+            <div class="list-group-item d-flex justify-content-between align-items-center" >
+                <p class="mr-auto mb-1">Descripción</p>
+                <p class= "mr-auto mb-1">Estado</p>
+            </div>
             {% for todo in todos %}
                 {{ macros.render_todo(todo) }}
             {% endfor %}

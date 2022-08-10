@@ -1,24 +1,30 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% macro render_todo(todo) %}
-    <li class="list-group-item">
-        <h5 class="task">
-            Tarea: {{ todo.to_dict().description }}
-            <span class="badge pull-right" style="font-size: 100%;">
-            {%if todo.to_dict().done %}
-                Done 
-            {% else %} 
-                To do
-            {% endif %}
-            </span>
-        </h5>
-        <div class="buttons">
+    <li class="list-group-item d-flex justify-content-between align-items-center" 
+    title="{{ todo.to_dict().description }}">
+        Tarea: {{ todo.to_dict().description }}
+        {%if todo.to_dict().done %}
+            <span class="badge badge-primary badge-pill" 
+            style="font-size: 85%;"
+            title="Done">Done 
+        {% else %} 
+            <span class="badge badge-secondary badge-pill" 
+            style="font-size: 85%;"
+            title="To do">To do
+        {% endif %}
+        </span>
+        <div class="btn-group btn-group-toggle" data-toggle="links">
             <a 
             href="{{ url_for('update', todo_id=todo.id, done=todo.to_dict().done) }}" 
-            class="btn d-inline-block btn-primary " style="font-size: 90%;">Update</a>
+            title="Update"
+            type="button"
+            class="btn btn-outline-primary">Update</a>
             <a 
             href="{{ url_for('delete', todo_id=todo.id) }}" 
-            class="btn d-inline-block btn-danger btn-xs">Delete</a>
+            title="Delete"
+            type="button"
+            class="btn  btn-outline-danger">Delete</a>
         </div>
     </li>
 {% endmacro %}

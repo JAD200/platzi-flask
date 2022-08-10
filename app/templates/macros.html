@@ -2,7 +2,7 @@
 
 {% macro render_todo(todo) %}
     <li class="list-group-item">
-        <h5>
+        <h5 class="task">
             Tarea: {{ todo.to_dict().description }}
             <span class="badge pull-right" style="font-size: 100%;">
             {%if todo.to_dict().done %}
@@ -12,14 +12,13 @@
             {% endif %}
             </span>
         </h5>
-        <div>
+        <div class="buttons">
             <a 
             href="{{ url_for('update', todo_id=todo.id, done=todo.to_dict().done) }}" 
             class="btn d-inline-block btn-primary " style="font-size: 90%;">Update</a>
             <a 
             href="{{ url_for('delete', todo_id=todo.id) }}" 
             class="btn d-inline-block btn-danger btn-xs">Delete</a>
-
         </div>
     </li>
 {% endmacro %}

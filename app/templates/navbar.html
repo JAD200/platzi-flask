@@ -20,18 +20,18 @@
                 </li>
                 {% if current_user.is_authenticated %}
                     <li>
-                        <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">
+                        <a class="nav-item nav-link active" href="{{ url_for('auth.logout') }}">
                             Logout</a>
                     </li>
                 {% endif %}
                 {% if current_user.is_anonymous %}
                     <li>
-                        <a class="nav-item nav-link" href="{{ url_for('auth.signup') }}">
+                        <a class="nav-item nav-link active" href="{{ url_for('auth.signup') }}">
                             Signup</a>
                     </li>
                 {% endif %}
                 <li>
-                    <a class="nav-item nav-link" href="https://platzi.com" target="_blank">
+                    <a class="nav-item nav-link active" href="https://platzi.com" target="_blank">
                         Platzi</a>
                 </li>
             </ul>

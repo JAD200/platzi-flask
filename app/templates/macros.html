@@ -1,24 +1,23 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% macro render_todo(todo) %}
-    <div class="col-sm-5" 
-    title="{{ todo.to_dict().description }}">
-        Tarea: {{ todo.to_dict().description }}
-    </div>
-    <div class="col">
-        {%if todo.to_dict().done %}
-            <span class="badge badge-primary badge-pill" 
-            style="font-size: 85%;"
-            title="Done">Done 
-        {% else %} 
-            <span class="badge badge-secondary badge-pill" 
-            style="font-size: 85%;"
-            title="To do">To do
-        {% endif %}
-        </span>
-    </div>
-    <div class="col">
-        <div class="btn-group btn-group-toggle" data-toggle="links">
+    <tr>
+        <td title="{{ todo.to_dict().description }}">
+            Tarea: {{ todo.to_dict().description }}
+        </td>
+        <td>
+            {%if todo.to_dict().done %}
+                <span class="badge badge-primary badge-pill" 
+                style="font-size: 85%;"
+                title="Done">Done 
+            {% else %} 
+                <span class="badge badge-secondary badge-pill" 
+                style="font-size: 85%;"
+                title="To do">To do
+            {% endif %}
+            </span>
+        </td>
+        <td class="btn-group btn-group-toggle" data-toggle="links">
             <a 
             href="{{ url_for('update', todo_id=todo.id, done=todo.to_dict().done) }}" 
             title="Update"
@@ -29,7 +28,6 @@
             title="Delete"
             type="button"
             class="btn  btn-outline-danger">Delete</a>
-        </div>
-    </div>
-    <div class="w-100"></div>
+        </td>
+    </tr>
 {% endmacro %}

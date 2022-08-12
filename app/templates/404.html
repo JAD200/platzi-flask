@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Lo sentimos no encontramos los que buscabas</h1>
-    <p>{{ error }}</p>
+    <h1>Lo sentimos<br> No encontramos lo que buscabas</h1>
+    <h2 class="alert alert-info" role="alert">
+        <a class="alert-link" href="{{ url_for('index') }}">Ir al inicio</a>
+    </h2>
+    <h3>Error: {{ error }}</h3>
 {% endblock %}

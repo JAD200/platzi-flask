@@ -118,8 +118,8 @@ Project Link: [https://github.com/JAD200/platzi-flask](https://github.com/JAD200
 ## Acknowledgments
 
 * [Platzi](https://platzi.com/)
-* [ - Teacher]()
-* [The course - Name of the course](https://platzi.com/)
+* [Bernardo Cassina - Teacher](https://twitter.com/bernardocassina)
+* [The course - Curso de Flask](https://platzi.com/cursos/flask/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
